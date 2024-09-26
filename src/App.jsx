@@ -1,17 +1,11 @@
-import { useState } from 'react'
-import './App.css'
+import NavBar from './NavBar';
+import ItemContainer from './ItemListContainer';
 
 function App() {
-  const handleClick = () => {
-    alert("Em breve este será um e-commerce.");
-  };
-
   return (
-    <div style={{ backgroundColor: '#FFF', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-      <h1>Jungen</h1>
-      <button onClick={handleClick}>
-        Você está preparado?
-      </button>
+    <div className='App'>
+      <NavBar />
+      <ItemContainer greeting={"Bem vindo ao nosso catálogo de Skins!"} />
     </div>
   );
 }

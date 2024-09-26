@@ -19,11 +19,7 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 5px;
 }
 
 h1 {
@@ -67,4 +63,17 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.greeting {
+  display: flex;
+justify-content: center;
 }
