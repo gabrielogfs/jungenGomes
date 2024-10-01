@@ -6,7 +6,7 @@ import './index.css'
 const CartWidget = () => {
     return (
         <div>
-            <FaShoppingCart size={24}></FaShoppingCart>
+            <FaShoppingCart className="shop" size={24}></FaShoppingCart>
         </div>
     );
 };

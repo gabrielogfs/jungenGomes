@@ -1,11 +1,12 @@
 import NavBar from './NavBar';
-import ItemContainer from './ItemListContainer';
+import ItemRender from './itemRender';
+import './index.css'
 
 function App() {
   return (
     <div className='App'>
       <NavBar />
-      <ItemContainer greeting={"Bem vindo ao nosso catálogo de Skins!"} />
+      <ItemRender />
     </div>
   );
 }
