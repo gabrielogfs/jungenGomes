@@ -19,16 +19,16 @@ const router = createBrowserRouter([
   {
     path: "/skin/:skinID",
     element: (
-        <>
+      <>
         <SkinDetails />
         <Link to={"/"}>Back to Home</Link>
-        </>
-        )
-    },
-        ]);
+      </>
+    )
+  },
+]);
 
-        createRoot(document.getElementById('root')).render(
-        <StrictMode>
-          <RouterProvider router={router} />
-        </StrictMode>,
-        )
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <RouterProvider router={router} />
+  </StrictMode>,
+)
