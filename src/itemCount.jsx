@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
-import "./skinList";
-import './index.css'
+import "./skinList.json";
 
 const ItemCount = ({ stock }) => {
     const [quantity, setQuantity] = useState(1);
@@ -14,10 +13,10 @@ const ItemCount = ({ stock }) => {
     };
 
     return (
-        <div className="cart-controls">
-          <button onClick={changeDecrease} disabled={quantity <= 1}>-</button>
-          <span className="quantity">{quantity}</span>
-          <button onClick={changeIncrease} disabled={quantity >= stock}>+</button>
+        <div className="flex space-x-4 justify-center m-4">
+          <button className="rounded-full bg-red-700 w-6 text-white font-semibold" onClick={changeDecrease} disabled={quantity <= 1}>-</button>
+          <span className="text-m font-bold italic text-slate-900 m-">{quantity}</span>
+          <button className="rounded-full bg-red-700 w-6 text-white font-semibold" onClick={changeIncrease} disabled={quantity >= stock}>+</button>
         </div>
       );
     }
