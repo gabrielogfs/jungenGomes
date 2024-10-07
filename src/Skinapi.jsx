@@ -25,7 +25,7 @@ const ItemRend = () => {
                     ))
                 ) : (
                     <div className="flex justify-center">
-                    <p>Carregando...</p>
+                        <p>Carregando...</p>
                     </div>
                 )}
             </ul>

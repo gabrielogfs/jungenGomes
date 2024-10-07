@@ -1,6 +1,7 @@
 import NavBar from './NavBar';
 import ItemRender from './itemRender';
 import ItemRend from './Skinapi';
+
 import "./SkinCatalog.css"
 
 function SkinCatalog() {
@@ -8,7 +9,7 @@ function SkinCatalog() {
     <div>
       <NavBar />
       <ItemRender />
-      {/* <ItemRend />  - API for skins visualization*/}  
+      {/* <ItemRend />  - API for skins visualization*/}
     </div>
   );
 }

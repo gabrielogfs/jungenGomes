@@ -21,14 +21,14 @@ const ItemRender = () => {
                 {products.length > 0 ? (
                     products.map((product) => (
                         <Link to={`/skin/${product.id}`}>
-                        <li className="w-56 m-4 border-2 border-red-700 rounded-lg " key={product.id}>
-                            <div className="mt-4 font-semibold italic text-slate-900">{product.name}</div>
-                            <img className="size-fit" src={product.img}></img>
-                            <p className="font-semibold italic text-slate-900">R$ {product.value.toFixed(2).replace('.', ',')}</p>
-                            <p>Estoque: {product.stock}</p>
-                            <ItemCount stock={product.stock} />
-                            <SkinShop product={product} />
-                        </li>
+                            <li className="w-56 m-4 border-2 border-red-700 rounded-lg " key={product.id}>
+                                <div className="mt-4 font-semibold italic text-slate-900">{product.name}</div>
+                                <img className="size-fit" src={product.img}></img>
+                                <p className="font-semibold italic text-slate-900">R$ {product.value.toFixed(2).replace('.', ',')}</p>
+                                <p>Estoque: {product.stock}</p>
+                                <ItemCount stock={product.stock} />
+                                <SkinShop product={product} />
+                            </li>
                         </Link>
                     ))
                 ) : (
