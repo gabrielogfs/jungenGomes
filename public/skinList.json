@@ -2,27 +2,27 @@
   {
     "id": 1,
     "name": "AK-47 | Redline",
-    "img": "/img/ak_redline.png",
+    "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_ak47_cu_ak47_cobra_light_png.png",
     "type": "Rifle",
-    "value": 75.50,
+    "price": 75.50,
     "stock": 10,
     "description": "A skin Redline da AK-47 traz um design elegante com linhas vermelhas que contrastam com seu corpo preto fosco. Um rifle de alto impacto, ideal para aqueles que querem dominar o campo de batalha."
   },
   {
     "id": 2,
     "name": "AWP | Dragon Lore",
-    "img": "/img/awp_draglore.png",
+    "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_awp_cu_medieval_dragon_awp_light_png.png",
     "type": "Sniper Rifle",
-    "value": 2000.00,
+    "price": 2000.00,
     "stock": 2,
     "description": "A Dragon Lore é uma das skins mais icônicas da AWP, com seu design inspirado em dragões e misticismo. Perfeita para snipers que querem uma combinação de poder e prestígio."
   },
   {
     "id": 3,
     "name": "M4A4 | Howl",
-    "img": "/img/m4a1_howl.png",
+    "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_m4a1_cu_m4a1_howling_light_png.png",
     "type": "Rifle",
-    "value": 1300.00,
+    "price": 1300.00,
     "stock": 1,
     "description": "Com um visual feroz de um lobo uivante em chamas, a M4A4 Howl é uma skin rara que simboliza poder e agressividade em combate."
   },
@@ -31,7 +31,7 @@
     "name": "Glock-18 | Fade",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_glock_aa_fade_light_png.png",
     "type": "Pistol",
-    "value": 250.00,
+    "price": 250.00,
     "stock": 5,
     "description": "A Glock-18 Fade é famosa por seu design que mistura cores vibrantes em um degradê, tornando-a uma escolha estilosa para quem gosta de pistolas ágeis."
   },
@@ -40,7 +40,7 @@
     "name": "Desert Eagle | Blaze",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_deagle_aa_flames_light_png.png",
     "type": "Pistol",
-    "value": 450.00,
+    "price": 450.00,
     "stock": 3,
     "description": "A Desert Eagle Blaze destaca-se pelas chamas que percorrem seu corpo, conferindo um visual intimidador para essa poderosa pistola de tiro único."
   },
@@ -49,7 +49,7 @@
     "name": "USP-S | Kill Confirmed",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_usp_silencer_cu_usp_kill_confirmed_light_png.png",
     "type": "Pistol",
-    "value": 100.00,
+    "price": 100.00,
     "stock": 8,
     "description": "A USP-S Kill Confirmed apresenta um design sombrio e detalhado, com elementos gráficos de caveiras e balas, perfeita para assassinos silenciosos."
   },
@@ -58,7 +58,7 @@
     "name": "Karambit | Doppler",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_knife_karambit_am_ruby_marbleized_light_png.png",
     "type": "Knife",
-    "value": 1500.00,
+    "price": 1500.00,
     "stock": 4,
     "description": "O Karambit Doppler é uma faca com um padrão hipnotizante de cores que mudam entre tons de vermelho e preto. Essencial para jogadores que gostam de estilo e perigo nas mãos."
   },
@@ -67,7 +67,7 @@
     "name": "M9 Bayonet | Marble Fade",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_knife_m9_bayonet_am_marble_fade_light_png.png",
     "type": "Knife",
-    "value": 1800.00,
+    "price": 1800.00,
     "stock": 2,
     "description": "A M9 Bayonet Marble Fade apresenta uma lâmina colorida com um padrão que lembra mármore. É uma faca robusta e altamente desejada por colecionadores e combatentes."
   },
@@ -76,7 +76,7 @@
     "name": "P90 | Asiimov",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_p90_cu_p90-asiimov_light_png.png",
     "type": "SMG",
-    "value": 90.00,
+    "price": 90.00,
     "stock": 6,
     "description": "A skin Asiimov para a P90 traz um design futurista com listras alaranjadas e brancas, ideal para quem deseja um visual moderno e chamativo em combate rápido."
   },
@@ -85,7 +85,7 @@
     "name": "MAC-10 | Neon Rider",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_mac10_cu_mac10_neonrider_light_png.png",
     "type": "SMG",
-    "value": 65.00,
+    "price": 65.00,
     "stock": 7,
     "description": "A MAC-10 Neon Rider possui um visual vibrante inspirado em corridas noturnas e neon, com tons de roxo e azul, perfeita para quem gosta de agilidade e estilo."
   },
@@ -94,7 +94,7 @@
     "name": "MP9 | Wild Lily",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_mp9_cu_mp9_island_floral_light_png.png",
     "type": "SMG",
-    "value": 400.00,
+    "price": 400.00,
     "stock": 3,
     "description": "A MP9 Wild Lily exibe um padrão floral com cores vibrantes, ideal para aqueles que querem um design leve e exótico em seu armamento."
   },
@@ -103,7 +103,7 @@
     "name": "FAMAS | Commemoration",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_famas_gs_famas_legacy_gold_light_png.png",
     "type": "Rifle",
-    "value": 35.00,
+    "price": 35.00,
     "stock": 9,
     "description": "A FAMAS Commemoration é uma homenagem dourada, com detalhes em azul, que dá um ar de celebração ao seu portador. Ideal para aqueles que apreciam o valor simbólico."
   },
@@ -112,7 +112,7 @@
     "name": "Nova | Hyper Beast",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_nova_cu_nova_hyperbeast_light_png.png",
     "type": "Shotgun",
-    "value": 25.00,
+    "price": 25.00,
     "stock": 12,
     "description": "A Nova Hyper Beast apresenta um design monstruoso, com cores neon, trazendo uma aparência selvagem e ameaçadora para os amantes de shotguns."
   },
@@ -121,7 +121,7 @@
     "name": "SSG 08 | Blood in the Water",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_ssg08_cu_shark_light_png.png",
     "type": "Sniper Rifle",
-    "value": 125.00,
+    "price": 125.00,
     "stock": 5,
     "description": "A SSG 08 Blood in the Water tem um design de tubarão feroz, com uma estética de águas sanguinárias, sendo uma skin perfeita para snipers pacientes e letais."
   },
@@ -130,7 +130,7 @@
     "name": "Dual Berettas | Dualing Dragons",
     "img": "https://raw.githubusercontent.com/ByMykel/counter-strike-image-tracker/main/static/panorama/images/econ/default_generated/weapon_elite_cu_dualberretta_dragons_light_png.png",
     "type": "Pistol",
-    "value": 15.00,
+    "price": 15.00,
     "stock": 15,
     "description": "As Dual Berettas Dualing Dragons possuem um design único, com dragões duplos, trazendo um toque de elegância e força para quem gosta de pistolas de disparo rápido."
   }
