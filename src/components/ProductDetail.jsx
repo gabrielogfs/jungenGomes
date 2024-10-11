@@ -1,22 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-
-/* 
-Pontos de atenção: 😃
-
-1. Você pode remover o import do React se não estiver usando
-2. Você tem uma função dispatch mas não está definida
-*/
-
-
-import NavBar from './NavBar';
+import CartContext from "../context/CartContext";
 
 export default function ProductDetail() {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(false);
     const [quantity, setQuantity] = useState(1);
+
+    const { cart, dispatch } = useContext(CartContext);
 
     useEffect(() => {
         setLoading(true);
@@ -37,6 +30,7 @@ export default function ProductDetail() {
 
     const handleChangeQuantity = (e) => {
         const newQuantity = Number(e.target.value);
+
         if (newQuantity >= 1) {
             setQuantity(newQuantity);
         }
@@ -59,8 +53,7 @@ export default function ProductDetail() {
 
     return (
         <div>
-            <NavBar />
-            <div className="flex flex-col items-center flex-wrap">
+            <div className="flex flex-col items-center flex-wrap h-5/6">
                 <div className="flex flex-col items-center mt-10 w-6/12 border">
                     <h1 className="text-3xl font-bold italic text-slate-900 mt-10">{product.name}</h1>
                     <img
@@ -81,7 +74,7 @@ export default function ProductDetail() {
                         onChange={handleChangeQuantity}
                         className="bg-slate-500"
                     />
-                    <button onClick={handleAddItem}></button>
+                    <button onClick={handleAddItem}>Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>

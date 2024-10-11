@@ -1,31 +1,27 @@
-import React from "react";
+import { useContext, useEffect } from "react";
 
-/*
-Pontos de atenção: 😃
-
-1. Importar o useContext do React, você esta usando o useContext sem importar
-2. Importar o CartContext, você está usando o CartContext sem importar
-3. Não encontrei o componente CartItem no projeto, você precisa criar o componente CartItem
-4. Exportar o componente Cart diretamente, não precisa exportar como export { Cart }, é uma boa prática exportar diretamente
-como `export Cart(){...}`
-5. Remover o import do React, não precisa importar o React se não for usar
-*/
+import CartContext from "../context/CartContext"
+import { CartItem } from "./CartItem";
 
 function Cart() {
     const { cart } = useContext(CartContext);
 
+    useEffect(() => {
+        console.log(cart);  // Verifique a estrutura do objeto
+    }, [cart]);
+
     return (
         <>
-            <h1>Carrinho</h1>
+            <h1 className="font-bold text-2xl ml-9">Carrinho</h1>
             <ul>
-                {cart?.lenth === 0 && "Seu carrinho está vazio."}
-                {cart?.map(({ id, title, quantity }) => {
-                    <CartItem key={title} id={id} title={title} quantity={quantity} />
-                })}
+                {cart?.length === 0 && "Seu carrinho está vazio."}
+                {cart?.map(({ id, name, quantity, img }) => (
+                    <CartItem key={id} id={id} name={name} quantity={quantity} img={img} />
+                ))}
             </ul>
         </>
     );
 }
 
-export { Cart };
+export { Cart }
 
