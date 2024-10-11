@@ -6,10 +6,6 @@ import { CartItem } from "./CartItem";
 function Cart() {
     const { cart } = useContext(CartContext);
 
-    useEffect(() => {
-        console.log(cart);  // Verifique a estrutura do objeto
-    }, [cart]);
-
     return (
         <>
             <h1 className="font-bold text-2xl ml-9">Carrinho</h1>
