@@ -3,6 +3,13 @@ import { FaShoppingCart } from "react-icons/fa";
 
 import { Link } from "react-router-dom";
 
+/*
+Pontos de atenção: 😃
+
+1. Você pode remover o import do React, não precisa importar o React se não for usar
+
+*/
+
 const NavBar = () => {
     return (
         <>

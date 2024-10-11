@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
 
+
+/*
+Pontos de atenção: 😃
+
+1. Você está validando o wepon.length como > 0, se não for mostra a mensagem "Carregando...",
+mas se o array for vzio vai mostrar carregando para sempre 😅, seria melhor validar se o loading é true e mostrar o carregando.
+em caso de array vazio mostrar "Nenhum item encontrado".
+
+*/
+
 const ItemRend = () => {
 
     const [weapon, setWeapon] = useState([])

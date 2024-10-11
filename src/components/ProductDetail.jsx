@@ -2,6 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 
+/* 
+Pontos de atenção: 😃
+
+1. Você pode remover o import do React se não estiver usando
+2. Você tem uma função dispatch mas não está definida
+*/
+
+
 import NavBar from './NavBar';
 
 export default function ProductDetail() {
