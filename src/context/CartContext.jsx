@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import React from "react";
 
 const CartContext = createContext([]);
@@ -6,16 +6,28 @@ const CartContext = createContext([]);
 const cartReducer = (cart, action) => {
     switch (action.type) {
         case "addItem": {
-            const existInCart = cart.some(
-                (productItem) => productItem.id === action.item.id
-            );
+            const itemOnCart = cart.find((productItem) => productItem.id === action.item.id);
+            const totalQuantityOnCart = itemOnCart ? itemOnCart.quantity : 0;
+
+            const newTotalQuantity = totalQuantityOnCart + action.item.quantity;
+
+            if (newTotalQuantity > action.item.stock) {
+                alert('A quantidade inserida no carrinho excede o estoque disponível.');
+                return cart;
+            }
 
             let newCart;
-            if (!existInCart) {
+            if (!itemOnCart) {
                 newCart = [...cart, action.item];
+                alert('Item adicionado ao carrinho.');
             } else {
                 // Se o item já está no carrinho, apenas o retorna sem alteração
-                newCart = cart;
+                newCart = cart.map((productItem) => 
+                    productItem.id === action.item.id
+                        ? { ...productItem, quantity: newTotalQuantity }
+                        : productItem
+                );
+                alert('Item adicionado ao carrinho.');
             }
 
             localStorage.setItem("cart", JSON.stringify(newCart));

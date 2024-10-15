@@ -31,7 +31,7 @@ export default function ProductDetail() {
     const handleChangeQuantity = (e) => {
         const newQuantity = Number(e.target.value);
 
-        if (newQuantity >= 1) {
+        if (newQuantity >= 1 && newQuantity <= product.stock) {
             setQuantity(newQuantity);
         }
     };
@@ -67,14 +67,19 @@ export default function ProductDetail() {
                         R$: {product.price.toFixed(2).replace('.', ',')}
                     </p>
                     <p>Estoque: {product.stock} unidades</p>
-                    <p className="my-5">{product.description}</p>
+                    <p className="my-5 justify-self-center">{product.description}</p>
+                    <div className="flex items-center">
+                    <span className="mr-1">Qntd: </span>
                     <input
                         value={quantity}
+                        min={1}
+                        max={product.stock}
                         type="number"
                         onChange={handleChangeQuantity}
-                        className="bg-slate-500"
+                        className="border border-gray-300 rounded p-1 text-center transition duration-300 ease-in-out hover:border-red-500 hover:ring hover:ring-red-500 hover:shadow-sm hover:shadow-red-500"
                     />
-                    <button onClick={handleAddItem}>Adicionar ao Carrinho</button>
+                    </div>
+                    <button className="border bg-red-600 font-semibold hover:bg-red-900 rounded p-1 text-center my-4" onClick={handleAddItem}>Adicionar ao Carrinho</button>
                 </div>
             </div>
         </div>

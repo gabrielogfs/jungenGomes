@@ -18,7 +18,7 @@ const Home = () => {
 
     return (
         <div>
-            <h1 className="text-xl font-semibold italic text-slate-900 mb-3 "> Lista de Itens</h1>
+            <h1 className="text-xl font-semibold italic text-slate-900 mb-3 flex justify-center "> Lista de Itens</h1>
             <ul className="grid grid-cols-3 gap-4 items-center">
                 {products.length > 0 ? (
                     products.map((product) => (
