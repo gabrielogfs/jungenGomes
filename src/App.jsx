@@ -11,21 +11,21 @@ import NavBar from "./components/NavBar";
 
 function App() {
 
-    return(
+    return (
         <>
-        <CartProvider>
-            <BrowserRouter>
-            <NavBar />
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/cart" element={<Cart />}></Route>
-                <Route path="/checkout" element={<Checkout />}></Route>
-                <Route path="/product/:id" element={<ProductDetail />}></Route>
-            </Routes>
-            <hr />
-            <footer className="flex justify-center mt-4 font-bold h-1/6">Created by: GOG - Gabriel Oliveira Gomes</footer>
-            </BrowserRouter>
-        </CartProvider>
+            <CartProvider>
+                <BrowserRouter>
+                    <NavBar />
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
+                        <Route path="/cart" element={<Cart />}></Route>
+                        <Route path="/checkout" element={<Checkout />}></Route>
+                        <Route path="/product/:id" element={<ProductDetail />}></Route>
+                    </Routes>
+                    <hr />
+                    <footer className="flex justify-center mt-4 font-bold h-1/6">Created by: GOG - Gabriel Oliveira Gomes</footer>
+                </BrowserRouter>
+            </CartProvider>
         </>
     );
 }

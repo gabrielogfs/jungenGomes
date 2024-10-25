@@ -21,7 +21,6 @@ const cartReducer = (cart, action) => {
                 newCart = [...cart, action.item];
                 alert('Item adicionado ao carrinho.');
             } else {
-                // Se o item já está no carrinho, apenas o retorna sem alteração
                 newCart = cart.map((productItem) => 
                     productItem.id === action.item.id
                         ? { ...productItem, quantity: newTotalQuantity }
