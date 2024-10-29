@@ -13,12 +13,14 @@ Pontos de atenção: 😃
 const NavBar = () => {
     return (
         <>
-            <div className="flex align-middle justify-between mb-4">
-                <Link to={"/"} className="text-5xl font-bold italic text-slate-900 -skew-y-3 bg-red-600">Jungen</Link>
-                <FaShoppingCart className="mr-4 align-middle flex" size={24}></FaShoppingCart>
+            <div className="flex items-center justify-between mt-3 mx-3">
+                <Link to={"/"} className="text-5xl font-bold italic text-slate-900 -skew-y-3 bg-red-600 flex items-center">Jungen</Link>
+                <Link to={"/cart"}>
+                <FaShoppingCart className="mr-4" size={24}/>  
+                </Link>
             </div>
             <nav>
-                <ul className="flex space-x-32 justify-center mb-10">
+                <ul className="flex space-x-32 justify-center mb-4">
                     <li>
                         <Link to={"/"}>Home</Link>
                     </li>

@@ -12,6 +12,8 @@ function CartItem({ id, name, quantity, img }) {
         });
     };
 
+    console.log(cart)
+
     const handleChangeQuantity = (e) => {
         const newQuantity = Number(e.target.value);
 

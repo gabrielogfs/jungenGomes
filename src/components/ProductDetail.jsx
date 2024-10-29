@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc } from "firebase/firestore/lite";
 
+import db from "./fireBaseConfig";
 import CartContext from "../context/CartContext";
 
 export default function ProductDetail() {
@@ -13,20 +15,17 @@ export default function ProductDetail() {
 
     useEffect(() => {
         setLoading(true);
-        fetch(`/skinList.json`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                const selectedProduct = data.find(item => item.id === parseInt(id));
-                setProduct(selectedProduct || null);
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar o produto:", error);
-                setLoading(false);
-            });
-    }, [id]);
+
+        (async function() {
+            const docRef = doc(db, "items", id);
+            const productSnapshot = await getDoc(docRef);
+
+            const product = productSnapshot.data();
+
+            setProduct(product)
+            setLoading(false);
+        })()
+    }, []);
 
     const handleChangeQuantity = (e) => {
         const newQuantity = Number(e.target.value);
