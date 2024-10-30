@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore/lite";
 
-import db from "./fireBaseConfig";
+import { db } from "./Firebase";
 import CartContext from "../context/CartContext";
 
 export default function ProductDetail() {
@@ -20,7 +20,8 @@ export default function ProductDetail() {
             const docRef = doc(db, "items", id);
             const productSnapshot = await getDoc(docRef);
 
-            const product = productSnapshot.data();
+            const productData = productSnapshot.data()
+            const product = { id: productSnapshot.id, ...productData};
 
             setProduct(product)
             setLoading(false);

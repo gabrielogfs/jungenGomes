@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { collection, getDocs } from "firebase/firestore/lite";
 
-import db from "./fireBaseConfig";
+import { db } from "./Firebase";
+import { useAuth } from "../context/AuthContext";
 
 const TypeButton = ({ typeName }) => (
     <Link to={`type/${typeName}`}>
@@ -14,6 +15,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [visibleCount, setVisibleCount] = useState(6);
+    const { currentUser } = useAuth();
 
 
     useEffect(() => {
@@ -43,6 +45,7 @@ const Home = () => {
         <section className="bg-gray-100 pt-4 px-4">
             <div className="max-w-5xl mx-auto">
                 {loading && <h1>Carregando...</h1>}
+                <h4>Olá, {currentUser?.email}</h4>
                 <h1 className="text-3xl font-bold italic text-slate-900 mb-6 text-center">Lista de Itens</h1>
                 <div className="flex lg:space-x-14 md:space-x-6 justify-center">
                     <TypeButton typeName="Knife" />

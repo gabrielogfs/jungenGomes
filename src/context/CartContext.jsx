@@ -1,5 +1,7 @@
 import { createContext, useReducer } from "react";
 import React from "react";
+import { toast, Bounce } from "react-toastify";
+import 'react-toastify/ReactToastify.css'
 
 const CartContext = createContext([]);
 
@@ -7,12 +9,40 @@ const cartReducer = (cart, action) => {
     switch (action.type) {
         case "addItem": {
             let newCart;
+            console.log("Adicionado ao carrinho");
+            
 
             const existsOnCart = cart.some(
                 (productItem) => productItem.id === action.item.id
             );
 
-            newCart = [...cart, action.item];
+            if (!existsOnCart) {
+                newCart = [...cart, action.item];
+                toast.success('Item adicionado ao carrinho!', {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+            } else {
+                newCart = cart;
+                toast.success('Quantidade no carrinho atualizada!', {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    transition: Bounce,
+                    });
+            }
 
             localStorage.setItem("cart", JSON.stringify(newCart));
             return newCart;
@@ -22,6 +52,7 @@ const cartReducer = (cart, action) => {
             const filteredCart = cart.filter(
                 (product) => product.id !== action.productId
             );
+            toast.warn('Item removido do carrinho.');
             localStorage.setItem("cart", JSON.stringify(filteredCart));
             return filteredCart;
         }
@@ -42,7 +73,7 @@ const cartReducer = (cart, action) => {
         }
 
         default:
-            return cart;  // Certifique-se de retornar o estado atual por padrão
+            return cart;
     }
 };
 

@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore/lite';
 
-import db from './fireBaseConfig';
+import { db } from './Firebase';
 
 export default function Type() {
     const { typeId } = useParams();
     const [productType, setProductType] = useState();
     const [loading, setLoading] = useState(true);
+
+    const TypeButton = ({ typeName }) => (
+        <Link to={`/type/${typeName}`}>
+            <button className="uppercase">{typeName}</button>
+        </Link>
+    )
 
     useEffect(() => {
         (async function () {
@@ -27,13 +33,21 @@ export default function Type() {
             setProductType(products);
             setLoading(false)
         })();
-    }, []);
+    }, [typeId]);
 
 
     return (
         <div>
             <section className="bg-gray-100 pt-4 px-4">
                 <div className="max-w-5xl mx-auto">
+                <div className="flex lg:space-x-14 md:space-x-6 my-4 justify-center">
+                    <TypeButton typeName="Knife" />
+                    <TypeButton typeName="Pistol" />
+                    <TypeButton typeName="Shotgun" />
+                    <TypeButton typeName="SMG" />
+                    <TypeButton typeName="Rifle" />
+                    <TypeButton typeName="Sniper Rifle" />
+                </div>
                 <h1 className="text-3xl font-bold italic text-slate-900 mb-6 text-center">{typeId}</h1>
                     {loading && <h1>Carregando...</h1>}
                     {!loading && (

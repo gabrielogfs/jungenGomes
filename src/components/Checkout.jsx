@@ -10,8 +10,8 @@ function Checkout() {
         <>
             <h1>Checkout</h1>
             <ul>
-                {cart.map(({ id, name, quantity, price }) => (
-                    <li>
+                {cart.map(({ name, quantity, price }) => (
+                    <li key={name}>
                         {`${name}
                     x${quantity} - Valor Total: R$${(
                                 price * quantity
