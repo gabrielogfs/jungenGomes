@@ -10,7 +10,7 @@ const cartReducer = (cart, action) => {
         case "addItem": {
             let newCart;
             console.log("Adicionado ao carrinho");
-            
+
 
             const existsOnCart = cart.some(
                 (productItem) => productItem.id === action.item.id
@@ -28,7 +28,7 @@ const cartReducer = (cart, action) => {
                     progress: undefined,
                     theme: "light",
                     transition: Bounce,
-                    });
+                });
             } else {
                 newCart = cart;
                 toast.success('Quantidade no carrinho atualizada!', {
@@ -41,7 +41,7 @@ const cartReducer = (cart, action) => {
                     progress: undefined,
                     theme: "light",
                     transition: Bounce,
-                    });
+                });
             }
 
             localStorage.setItem("cart", JSON.stringify(newCart));
@@ -59,21 +59,40 @@ const cartReducer = (cart, action) => {
 
         case "changeItemQuantity": {
             const mappedCart = cart.map((product) => {
-                if (product.id === action.product.id) {
-                    return {
-                        ...product,
-                        quantity: action.product.newQuantity,
-                    };
+                if (product.id !== action.product.id) {
+                    return product;
                 }
-                return product;
+                if (product.id === action.product.id & action.product.newQuantity > product.stock) {
+                    toast.error(`Quantidade máxima disponível para este item é ${product.stock}.`, {
+                        position: "bottom-center",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        transition: Bounce,
+                    });
+                    return product; // Retorna o produto sem alteração
+                }
+                return {
+                    ...product,
+                    quantity: action.product.newQuantity,
+                };
             });
 
             localStorage.setItem("cart", JSON.stringify(mappedCart));
             return mappedCart;
         }
 
+        case "resetCart": {
+            localStorage.setItem("cart", JSON.stringify([]));
+            return [];
+        }
+
         default:
-            return cart;
+            break;
     }
 };
 

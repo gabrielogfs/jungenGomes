@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore/lite";
+import { Link } from "react-router-dom";
 
-import { db } from "./Firebase";
+import { db } from "../../server/Firebase";
 import CartContext from "../context/CartContext";
 
 export default function ProductDetail() {
@@ -54,11 +55,11 @@ export default function ProductDetail() {
     return (
         <div>
             <div className="flex flex-col items-center flex-wrap h-5/6">
-                <div className="flex flex-col items-center mt-10 w-6/12 border">
+            <div className="flex flex-col items-center mt-10 w-6/12 border border-red-700 shadow-xl">
                     <h1 className="text-3xl font-bold italic text-slate-900 mt-10">{product.name}</h1>
                     <img
                         className="my-10"
-                        width={200}
+                        width={300}
                         src={product.img}
                         alt={product.name}
                     />
@@ -67,7 +68,7 @@ export default function ProductDetail() {
                         R$: {product.price.toFixed(2).replace('.', ',')}
                     </p>
                     <p>Estoque: {product.stock} unidades</p>
-                    <p className="my-5 justify-self-center">{product.description}</p>
+                    <p className="my-5 text-center">{product.description}</p>
                     <div className="flex items-center">
                     <span className="mr-1">Qntd: </span>
                     <input
@@ -80,6 +81,7 @@ export default function ProductDetail() {
                     />
                     </div>
                     <button className="border bg-red-600 font-semibold hover:bg-red-900 rounded p-1 text-center my-4" onClick={handleAddItem}>Adicionar ao Carrinho</button>
+                    <Link to="/" className="border bg-red-600 font-semibold hover:bg-red-900 rounded p-1 text-center my-4" >Retornar</Link>
                 </div>
             </div>
         </div>

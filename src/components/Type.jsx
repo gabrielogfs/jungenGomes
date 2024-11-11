@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore/lite';
 
-import { db } from './Firebase';
+import { db } from '../../server/Firebase';
 
 export default function Type() {
     const { typeId } = useParams();

@@ -1,27 +1,36 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 
-import { auth } from '../components/Firebase';
+import { auth } from '../../server/Firebase';
+import CartContext from './CartContext';
 
 const AuthContext = createContext();
 
-export function useAuth () {
+export function useAuth() {
     return useContext(AuthContext);
 }
 
 export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState(null)
+    const { dispatch } = useContext(CartContext);
+
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, initializeUser);
+        const unsubscribe = onAuthStateChanged(auth, (user) => initializeUser(user));
+        return unsubscribe;
     }, []);
 
     const initializeUser = (user) => {
-        if(user) {
+        if (user) {
             setCurrentUser({ ...user });
         } else {
-            setCurrentUser(false)
+            setCurrentUser(null);
+            setTimeout(() => {
+                if (dispatch) {
+                    dispatch({ type: 'resetCart' });
+                }
+            }, 0);
         }
     };
 

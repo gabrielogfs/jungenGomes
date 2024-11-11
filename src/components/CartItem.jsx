@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
+
 import CartContext from "../context/CartContext"
 
 function CartItem({ id, name, quantity, img }) {
-    const [isEditing, setEditing] = useState(false);
     const { cart, dispatch } = useContext(CartContext);
 
     const handleRemoveItem = (productId) => {

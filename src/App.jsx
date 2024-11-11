@@ -19,12 +19,13 @@ import { AuthProvider } from "./context/AuthContext";
 function App() {
 
     return (
-        <>
+        <div className="min-h-screen flex flex-col">
             <ToastContainer />
             <AuthProvider>
                 <CartProvider>
                     <BrowserRouter>
                         <NavBar />
+                        <div className="flex-grow">
                         <Routes>
                             <Route path="/" element={<Home />}></Route>
                             <Route path="/cart" element={<Cart />}></Route>
@@ -34,12 +35,13 @@ function App() {
                             <Route path="/signup" element={<SignUp />} />
                             <Route path="/signin" element={<SignIn />} />
                         </Routes>
+                        </div>
                         <hr />
-                        <footer className="flex justify-center my-4 font-bold h-1/6">Created by: GOG - Gabriel Oliveira Gomes</footer>
+                        <footer className="flex justify-center py-4 font-semibold">Created by: GOG - Gabriel Oliveira Gomes</footer>
                     </BrowserRouter>
                 </CartProvider>
             </AuthProvider>
-        </>
+        </div>
     );
 }
 
