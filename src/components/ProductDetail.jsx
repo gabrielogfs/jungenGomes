@@ -1,89 +1,112 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore/lite";
-import { Link } from "react-router-dom";
+import { Breadcrumb } from "antd";
 
 import { db } from "../../server/Firebase";
 import CartContext from "../context/CartContext";
 
 export default function ProductDetail() {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
-    const { cart, dispatch } = useContext(CartContext);
+  const { cart, dispatch } = useContext(CartContext);
 
-    useEffect(() => {
-        setLoading(true);
+  useEffect(() => {
+    setLoading(true);
 
-        (async function() {
-            const docRef = doc(db, "items", id);
-            const productSnapshot = await getDoc(docRef);
+    (async function () {
+      const docRef = doc(db, "items", id);
+      const productSnapshot = await getDoc(docRef);
 
-            const productData = productSnapshot.data()
-            const product = { id: productSnapshot.id, ...productData};
+      const productData = productSnapshot.data();
+      const product = { id: productSnapshot.id, ...productData };
 
-            setProduct(product)
-            setLoading(false);
-        })()
-    }, []);
+      setProduct(product);
+      setLoading(false);
+    })();
+  }, []);
 
-    const handleChangeQuantity = (e) => {
-        const newQuantity = Number(e.target.value);
+  const handleChangeQuantity = (e) => {
+    const newQuantity = Number(e.target.value);
 
-        if (newQuantity >= 1 && newQuantity <= product.stock) {
-            setQuantity(newQuantity);
-        }
-    };
-
-    if (loading) {
-        return <div>Carregando...</div>;
+    if (newQuantity >= 1 && newQuantity <= product.stock) {
+      setQuantity(newQuantity);
     }
+  };
 
-    if (!product) {
-        return <div>Produto não encontrado</div>;
-    }
+  if (loading) {
+    return <div>Carregando...</div>;
+  }
 
-    const handleAddItem = () => {
-        dispatch({
-            type: "addItem",
-            item: { ...product, quantity },
-        });
-    };
+  if (!product) {
+    return <div>Produto não encontrado</div>;
+  }
 
-    return (
-        <div>
-            <div className="flex flex-col items-center flex-wrap h-5/6">
-            <div className="flex flex-col items-center mt-10 w-6/12 border border-red-700 shadow-xl">
-                    <h1 className="text-3xl font-bold italic text-slate-900 mt-10">{product.name}</h1>
-                    <img
-                        className="my-10"
-                        width={300}
-                        src={product.img}
-                        alt={product.name}
-                    />
-                    <p className="my-2">Tipo: {product.type}</p>
-                    <p className="mt-1 text-xl font-bold italic text-slate-900">
-                        R$: {product.price.toFixed(2).replace('.', ',')}
-                    </p>
-                    <p>Estoque: {product.stock} unidades</p>
-                    <p className="my-5 text-center">{product.description}</p>
-                    <div className="flex items-center">
-                    <span className="mr-1">Qntd: </span>
-                    <input
-                        value={quantity}
-                        min={1}
-                        max={product.stock}
-                        type="number"
-                        onChange={handleChangeQuantity}
-                        className="border border-gray-300 rounded p-1 text-center transition duration-300 ease-in-out hover:border-red-500 hover:ring hover:ring-red-500 hover:shadow-sm hover:shadow-red-500"
-                    />
-                    </div>
-                    <button className="border bg-red-600 font-semibold hover:bg-red-900 rounded p-1 text-center my-4" onClick={handleAddItem}>Adicionar ao Carrinho</button>
-                    <Link to="/" className="border bg-red-600 font-semibold hover:bg-red-900 rounded p-1 text-center my-4" >Retornar</Link>
-                </div>
-            </div>
+  const handleAddItem = () => {
+    dispatch({
+      type: "addItem",
+      item: { ...product, quantity },
+    });
+  };
+
+  function toCaps(str) {
+    return str.toUpperCase();
+  }
+
+  return (
+    <div className="flex justify-center items-start pt-2 bg-gray-50 sm:mx-10 mb-4">
+      <div className="flex flex-col md:flex-row w-full shadow-xl">
+        <div className="flex flex-col items-center lg:p-12 bg-gray-50 md:w-1/2 border-r lg:w-2/3">
+          <Breadcrumb
+            className="w-full items-start mb-4"
+            items={[
+              { title: "Home", href: "/" },
+              {
+                title: toCaps(product.weapon),
+                href: `/type/${product.weapon}`,
+              },
+              { title: product.name },
+            ]}
+          />
+
+          <img
+            className="w-[250px] md:w-[500px] lg:w-[500px] pt-5 sm:pt-0"
+            src={product.img}
+            alt={product.name}
+          />
         </div>
-    );
+
+        <div className="flex flex-col justify-between p-6 md:w-1/2">
+          <p className="font-light text-xs mt-8">{toCaps(product.weapon)}</p>
+          <h1 className="text-2xl font-bold italic text-slate-900 ">
+            {product.name}
+          </h1>
+          <div>
+            <p className="mt-5 text-5xl font-bold italic text-slate-900">
+              {product.price.toFixed(2).replace(".", ",")} €
+            </p>
+            <p>Stock: {product.stock} units</p>
+          </div>
+          <div className="flex w-full justify-center">
+            <button
+              onClick={handleAddItem}
+              className="border bg-red-600 font-semibold hover:bg-red-900 rounded 
+               text-sm md:text-lg lg:text-xl 
+               px-4 py-2 md:px-6 md:py-3 
+               my-4 text-center"
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
+          <p className="pt-5 font-semibold">Description</p>
+          <p className="my-1">{product.description}</p>
+          <div className="flex items-center gap-2 mt-4"></div>
+          <div className="w-full flex justify-center"></div>
+        </div>
+      </div>
+    </div>
+  );
 }

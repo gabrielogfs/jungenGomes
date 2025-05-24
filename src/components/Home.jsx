@@ -4,11 +4,7 @@ import { collection, getDocs } from "firebase/firestore/lite";
 
 import { db } from "../../server/Firebase";
 
-const TypeButton = ({ typeName }) => (
-    <Link to={`type/${typeName}`}>
-        <button className="uppercase">{typeName}</button>
-    </Link>
-)
+
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -42,23 +38,25 @@ const Home = () => {
     return (
         <>
             <div>
-                <img className="my-4 w-full h-auto" src="../img/bgImage.webp" alt="Main image of Jungen." />
+                <img className="my-1 w-full h-auto px-1 bg-zinc-100" src="../img/bgImage.webp" alt="Main image of Jungen." />
             </div>
             <section className="bg-gray-100 pt-4 px-4">
                 <div className="max-w-5xl mx-auto">
 
                     {loading && <h1>Carregando...</h1>}
 
-                    <div className="flex mb-3 font-semibold lg:space-x-14 md:space-x-6 justify-center">
-                        <TypeButton typeName="Knife" />
-                        <TypeButton typeName="Pistol" />
-                        <TypeButton typeName="Shotgun" />
-                        <TypeButton typeName="SMG" />
-                        <TypeButton typeName="Rifle" />
-                        <TypeButton typeName="Sniper Rifle" />
-                    </div>
 
                     {!loading && (
+                        <div className="flex flex-col items-center">
+                        <Link to={"/"} className="text-3xl font-bold italic text-slate-900 mb-6 justify-evenly">
+                        <div>
+                        Mercado de Counter-Strike 2
+                        
+                        <span>
+                            {`VER TODAS AS ${products.length} SKINS DE CS2!`}
+                        </span>
+                        </div>
+                        </Link>
                         <ul className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 items-center justify-center mx-auto">
                             {products.slice(0, visibleCount).map(({ id, name, img, stock, price }) => (
                                 <li className="w-56 m-4 border-2 border-red-700 rounded-lg shadow-lg hover:shadow-2xl hover:scale-105 transition-transform duration-200 overflow-hidden" key={id}>
@@ -74,6 +72,7 @@ const Home = () => {
                                 </li>
                             ))}
                         </ul>
+                        </div>
                     )}
 
                     {products.length > visibleCount && (

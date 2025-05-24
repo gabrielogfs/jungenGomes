@@ -1,26 +1,32 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 
-import CartContext from "../context/CartContext"
+import CartContext from "../context/CartContext";
 import ProductTable from "./ProductTable";
 import { Link } from "react-router-dom";
 
-const ProductRow = ({ quantity, name, total, onClick, onChange }) => {
+const ProductRow = ({ quantity, name, total, img, onClick, onChange }) => {
   return (
     <tr>
-      <td className="px-6 my-2 whitespace-nowrap text-sm font-medium text-gray-800 flex justify-center align-middle text-center">
-        <div className="relative flex items-center max-w-[8rem]">
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        <img
+          src={img}
+          alt={`Imagem de ${name}`}
+          className="w-16 h-16 object-contain mx-auto"
+        />
+      </td>
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold text-center">
+        {name}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+        <div className="flex items-center justify-center max-w-[8rem] mx-auto">
+          {/* Decrement button */}
           <button
             type="button"
-            id="decrement-button"
-            data-input-counter-decrement="quantity-input"
+            onClick={() => onChange(quantity - 1)}
             className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-            onClick={() => {
-              onChange(quantity - 1);
-            }}
           >
             <svg
               className="w-3 h-3 text-gray-900 dark:text-white"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 18 2"
@@ -34,30 +40,23 @@ const ProductRow = ({ quantity, name, total, onClick, onChange }) => {
               />
             </svg>
           </button>
+
+          {/* Input */}
           <input
             type="text"
-            id="quantity-input"
-            data-input-counter
-            aria-describedby="helper-text-explanation"
-            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             value={quantity}
-            onChange={(e) => {
-              onChange(e.target.value);
-            }}
-            required
+            onChange={(e) => onChange(Number(e.target.value))}
+            className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           />
+
+          {/* Increment button */}
           <button
             type="button"
-            id="increment-button"
-            data-input-counter-increment="quantity-input"
+            onClick={() => onChange(quantity + 1)}
             className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
-            onClick={() => {
-              onChange(quantity + 1);
-            }}
           >
             <svg
               className="w-3 h-3 text-gray-900 dark:text-white"
-              aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 18 18"
@@ -73,9 +72,6 @@ const ProductRow = ({ quantity, name, total, onClick, onChange }) => {
           </button>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-sm  text-gray-800 font-semibold">
-        {name}
-      </td>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-800 font-semibold text-center">
         ${total}
       </td>
@@ -87,7 +83,7 @@ const ProductRow = ({ quantity, name, total, onClick, onChange }) => {
           disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500
           dark:hover:text-blue-400 cursor-pointer"
         >
-          Remover
+          Remove
         </span>
       </td>
     </tr>
@@ -101,7 +97,8 @@ export default function Cart() {
     ?.reduce((prevProduct, currProduct) => {
       return prevProduct + currProduct.quantity * currProduct.price;
     }, 0)
-    .toFixed(2).replace('.', ',');
+    .toFixed(2)
+    .replace(".", ",");
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-12 lg:max-w-7xl lg:px-8">
@@ -113,12 +110,14 @@ export default function Cart() {
       ) : (
         <>
           <ProductTable>
-            {cart?.map(({ id, quantity, name, price }) => (
+            {cart?.map(({ id, quantity, name, price, img }) => (
               <ProductRow
                 key={name}
+                img={img}
+                id={id}
                 quantity={quantity}
                 name={name}
-                total={(price * quantity).toFixed(2).replace('.', ',')}
+                total={(price * quantity).toFixed(2).replace(".", ",")}
                 onClick={() => {
                   dispatch({
                     type: "removeItem",
@@ -128,7 +127,12 @@ export default function Cart() {
                 onChange={(newQuantity) => {
                   dispatch({
                     type: "changeItemQuantity",
-                    product: { id, newQuantity: Number(newQuantity), name, price },
+                    product: {
+                      id,
+                      newQuantity: Number(newQuantity),
+                      name,
+                      price,
+                    },
                   });
                 }}
               />
@@ -151,4 +155,3 @@ export default function Cart() {
 }
 
 export { Cart };
-

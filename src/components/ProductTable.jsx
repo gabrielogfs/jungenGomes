@@ -8,17 +8,20 @@ export default function ProductTable({ children }) {
           <table className="min-w-full divide-y">
             <thead>
               <tr>
+                <th className="px-6 py-3 text-xs font-bold uppercase text-center">
+                  Item
+                </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-center text-xs font-bold uppercase "
                 >
-                  Qtde
+                  Name
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-start text-xs font-bold uppercase "
+                  className="px-6 py-3 text-center text-xs font-bold uppercase "
                 >
-                  Nome
+                  Qnt
                 </th>
                 <th
                   scope="col"
@@ -34,7 +37,7 @@ export default function ProductTable({ children }) {
                 </th>
               </tr>
             </thead>
-            {children}
+            <tbody className="dark:bg-zinc-300 bg-gray-700">{children}</tbody>
           </table>
         </div>
       </div>
