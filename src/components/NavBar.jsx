@@ -15,7 +15,7 @@ const NavBar = () => {
 
   const TypeButton = ({ typeName, onClick }) => (
     <Link to={`type/${typeName}`} onClick={onClick}>
-      <div className="flex items-start flex-wrap h-full sm:h-[50px] position: relative">
+      <div className="flex items-start flex-wrap h-full sm:py-4 position: relative">
         <button className="uppercase">{typeName}</button>
       </div>
     </Link>
@@ -56,7 +56,7 @@ const NavBar = () => {
 
         <ul className="flex text-xl font-semibold text-red-700 space-x-32">
           {!currentUser && (
-            <li>
+            <li className="mr-4">
               <Link to={"/signin"}>
                 <UserOutlined viewBox="0 0 1024 1024" />
               </Link>
@@ -111,7 +111,7 @@ const NavBar = () => {
         </div>
       </div>
 
-      <div className="hidden md:flex bg-gray-100 p-4 justify-evenly">
+      <div className="hidden md:flex bg-gray-100 px-4 pt-2 justify-evenly">
         <TypeButton typeName="Knife" />
         <TypeButton typeName="Pistol" />
         <TypeButton typeName="Shotgun" />

@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore/lite";
+import { doc, getDoc } from "firebase/firestore";
 import { Breadcrumb } from "antd";
 
 import { db } from "../../server/Firebase";
@@ -28,14 +28,6 @@ export default function ProductDetail() {
       setLoading(false);
     })();
   }, []);
-
-  const handleChangeQuantity = (e) => {
-    const newQuantity = Number(e.target.value);
-
-    if (newQuantity >= 1 && newQuantity <= product.stock) {
-      setQuantity(newQuantity);
-    }
-  };
 
   if (loading) {
     return <div>Carregando...</div>;

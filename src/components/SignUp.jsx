@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { createUser } from '../context/auth';
 
 export default function SignUp() {
@@ -50,6 +50,7 @@ export default function SignUp() {
                                     setEmail(e.target.value)
                                 }}
                                 name="email"
+                                id='email'
                                 type="email"
                                 placeholder='Insira seu e-mail'
                                 required
@@ -74,6 +75,7 @@ export default function SignUp() {
                                 onChange={(e) => {
                                     setPassword(e.target.value)
                                 }}
+                                id='password'
                                 name="password"
                                 type="password"
                                 placeholder='Insira sua senha'
@@ -99,6 +101,7 @@ export default function SignUp() {
                                     setConfirmPassword(e.target.value)
                                 }}
                                 name="password"
+                                id='confirm-password'
                                 type="password"
                                 placeholder='Confirme sua senha'
                                 required
